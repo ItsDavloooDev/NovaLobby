@@ -1,0 +1,6 @@
+name: VanteyLobby
+version: '${version}'
+
+main: dev.itsdavlooo.VanteyLobby.VanteyLobby
+api-version: '1.21.5'
+load: POSTWORLD
