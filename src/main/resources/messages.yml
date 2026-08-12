@@ -1,0 +1,39 @@
+# ============================================================
+#  NovaLobby - messages.yml
+#  All plugin messages.
+#  Colors: legacy (&a), hex (&#RRGGBB / <#RRGGBB>), MiniMessage
+#  (<gradient:#RRGGBB:#RRGGBB>...</gradient>).
+# ============================================================
+
+# Prefix shown before most messages. Change it to whatever you want.
+prefix: "<gradient:#00E5FF:#7C4DFF>NovaLobby</gradient> &8» &7"
+
+no-permission: "%prefix%&cYou don't have permission to do that."
+player-only: "%prefix%&cThis command can only be used by a player."
+player-not-found: "%prefix%&cPlayer &e%target% &cnot found."
+reload-success: "%prefix%&aConfiguration reloaded successfully."
+
+spawn:
+  set: "%prefix%&aSpawn set to your current location."
+
+time-selector:
+  set: "%prefix%&7Time set to %option%&7."
+
+player-hider:
+  hidden: "%prefix%&cPlayers hidden."
+  shown: "%prefix%&aPlayers visible."
+
+playtime:
+  self: "%prefix%&7You have been in the lobby for &e%playtime%&7."
+  other: "%prefix%&e%target% &7has been in the lobby for &e%playtime%&7."
+
+fly:
+  enabled: "%prefix%&aFlight enabled."
+  disabled: "%prefix%&cFlight disabled."
+  enabled-other: "%prefix%&aFlight enabled for &e%target%&a."
+  disabled-other: "%prefix%&cFlight disabled for &e%target%&c."
+  disabled-by-damage: "%prefix%&cFlight disabled: you took damage."
+
+gamemode:
+  changed: "%prefix%&7Gamemode set to &e%gamemode%&7."
+  changed-other: "%prefix%&7Gamemode of &e%target% &7set to &e%gamemode%&7."

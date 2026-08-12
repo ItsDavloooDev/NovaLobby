@@ -1,1 +1,1 @@
-rootProject.name = "VanteyLobby"
+rootProject.name = "NovaLobby"

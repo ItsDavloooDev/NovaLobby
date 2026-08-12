@@ -6,10 +6,13 @@ plugins {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.6")
+    compileOnly("net.luckperms:api:5.4")
 }
 
 java {
@@ -18,15 +21,13 @@ java {
 
 tasks {
     runServer {
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
         minecraftVersion("1.21.5")
         jvmArgs("-Xms2G", "-Xmx2G")
     }
 
     processResources {
         val props = mapOf("version" to version)
+        inputs.properties(props)
         filesMatching("plugin.yml") {
             expand(props)
         }

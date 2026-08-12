@@ -1,0 +1,275 @@
+# ============================================================
+#  NovaLobby - config.yml
+#  Colors: legacy codes (&a, &l...), hex (&#RRGGBB or
+#  <#RRGGBB>) and MiniMessage tags (<gradient:#RRGGBB:#RRGGBB>...).
+#  Reload at runtime with /novalobby reload.
+# ============================================================
+
+# ------------------------------------------------------------
+# SERVER SELECTOR
+# ------------------------------------------------------------
+selector:
+  # Item given on join to open the selector.
+  item:
+    # Give the item automatically when a player joins.
+    give-on-join: true
+    # Hotbar slot (0-8) where the item is placed.
+    slot: 4
+    material: COMPASS
+    name: "<gradient:#00E5FF:#2979FF>Server Selector</gradient> &7(Right Click)"
+    lore:
+      - "&7Right click to choose"
+      - "&7a server to play on!"
+  gui:
+    # Title of the GUI.
+    title: "Server Selector"
+    # Size of the GUI in slots (multiple of 9, max 54).
+    slots: 27
+    # GUI items. The key is a free id.
+    # Item options:
+    #   material     -> Bukkit material name
+    #   slot         -> GUI slot; -1 fills every empty slot (filler)
+    #   amount       -> item amount (default 1)
+    #   glow         -> true for enchanted glint
+    #   base64       -> custom head texture (only with material: PLAYER_HEAD)
+    #   display_name -> item name
+    #   lore         -> description lines
+    # actions supports:
+    #   "[PROXY] <server>"   -> send the player to a BungeeCord/Velocity server
+    #   "[BUNGEE] <server>"  -> alias of [PROXY]
+    #   "[MESSAGE] <text>"   -> send a message to the player
+    #   "[CONSOLE] <cmd>"    -> run the command from console
+    #   "[PLAYER] <cmd>"     -> run the command as the player
+    #   "[CLOSE]"            -> close the GUI
+    #   "<cmd>"              -> no prefix, run as the player
+    # Available placeholder: %player_name%
+    items:
+      filler:
+        material: GRAY_STAINED_GLASS_PANE
+        slot: -1
+
+      survival:
+        material: DIRT
+        slot: 13
+        amount: 1
+        glow: false
+        display_name: "&aSurvival"
+        lore:
+          - "&7Right click to choose"
+          - "&7a server to play on."
+        actions:
+          - "[CLOSE]"
+          - "[MESSAGE] &7Sending you to: &aSurvival"
+          - "[PROXY] survival"
+
+# ------------------------------------------------------------
+# LAUNCHPADS
+# No commands needed: place the configured pressure plate on top
+# of the configured block and it becomes a launchpad.
+# ------------------------------------------------------------
+launchpads:
+  enabled: true
+  # Pressure plate type that triggers the launch.
+  plate-material: HEAVY_WEIGHTED_PRESSURE_PLATE
+  # Block required under the pressure plate.
+  block-below: EMERALD_BLOCK
+  # Horizontal force applied in the look direction.
+  horizontal-power: 2.5
+  # Vertical force (Y component of the velocity).
+  vertical-power: 1.0
+  # Cancel fall damage after the launch.
+  no-fall-damage: true
+  particles:
+    enabled: true
+    # Bukkit particle name (e.g. FLAME, CLOUD, CRIT, FIREWORK).
+    type: FLAME
+    count: 30
+  sound:
+    enabled: true
+    # Bukkit sound name (e.g. ENTITY_FIREWORK_ROCKET_LAUNCH, ENTITY_BAT_TAKEOFF).
+    type: ENTITY_FIREWORK_ROCKET_LAUNCH
+    volume: 1.0
+    pitch: 1.0
+
+# ------------------------------------------------------------
+# GRAPPLING HOOK
+# ------------------------------------------------------------
+grappling-hook:
+  enabled: true
+  item:
+    give-on-join: true
+    slot: 1
+    material: FISHING_ROD
+    name: "<gradient:#76FF03:#00C853>Grappling Hook</gradient>"
+    lore:
+      - "&7Throw the hook and reel it in"
+      - "&7to get pulled towards it!"
+  # Horizontal force multiplier of the pull.
+  horizontal-multiplier: 1.6
+  # Vertical force multiplier of the pull.
+  vertical-multiplier: 1.2
+  # Cancel fall damage after the pull.
+  no-fall-damage: true
+  # The hook sticks to walls instead of bouncing/falling.
+  stick-to-walls: true
+  # Visual/sound effects on pull.
+  effects:
+    enabled: true
+    # Particle of the line between player and hook.
+    line-particle: END_ROD
+    sound: ITEM_TRIDENT_RIPTIDE_1
+    sound-volume: 1.0
+    sound-pitch: 1.2
+
+# ------------------------------------------------------------
+# ENDERBUTT (dash / double jump with an ender pearl)
+# ------------------------------------------------------------
+enderbutt:
+  enabled: true
+  item:
+    give-on-join: true
+    slot: 0
+    material: ENDER_PEARL
+    name: "<gradient:#D500F9:#651FFF>EnderButt</gradient>"
+    lore:
+      - "&7Right click to dash!"
+      - "&7Look up or down"
+      - "&7to change direction."
+  # Pitch above which (looking down) the player is launched
+  # downwards. Pitch range: -90 (up) / +90 (down).
+  pitch-down-threshold: 60
+  # Pitch below which (looking up) the player is launched upwards.
+  pitch-up-threshold: -60
+  # Horizontal dash force (look direction).
+  dash-horizontal-power: 2.6
+  # Vertical push added to the horizontal dash.
+  # 0.0 = perfectly flat dash when aiming straight.
+  dash-vertical-power: 0.0
+  # Vertical launch force (up/down).
+  vertical-launch-power: 2.0
+  # Cancel fall damage after use.
+  no-fall-damage: true
+  # Visual/sound effects on dash.
+  effects:
+    enabled: true
+    # Particle burst at the moment of the dash.
+    burst-particle: REVERSE_PORTAL
+    # Trail following the player after the dash.
+    trail-particle: PORTAL
+    # Trail duration in ticks (20 ticks = 1 second).
+    trail-ticks: 12
+    sound: ENTITY_ENDERMAN_TELEPORT
+    sound-volume: 1.0
+    sound-pitch: 1.4
+
+# ------------------------------------------------------------
+# PLAYER HIDER
+# Instant toggle, no cooldown.
+# ------------------------------------------------------------
+player-hider:
+  enabled: true
+  give-on-join: true
+  slot: 8
+  # Item shown while other players are VISIBLE.
+  item-shown:
+    material: LIME_DYE
+    name: "&aPlayers Visible &7(Right Click)"
+    lore:
+      - "&7Click to hide"
+      - "&7other players."
+  # Item shown while other players are HIDDEN.
+  item-hidden:
+    material: GRAY_DYE
+    name: "&cPlayers Hidden &7(Right Click)"
+    lore:
+      - "&7Click to show"
+      - "&7other players."
+
+# ------------------------------------------------------------
+# TIME SELECTOR (client-side)
+# Changes the time ONLY for the player using it, the rest of
+# the server is not affected.
+# ------------------------------------------------------------
+time-selector:
+  enabled: true
+  item:
+    give-on-join: true
+    slot: 7
+    material: CLOCK
+    name: "<gradient:#FFEA00:#FF6D00>Time Selector</gradient> &7(Right Click)"
+    lore:
+      - "&7Choose the time only you see!"
+  gui:
+    title: "&8Select the time"
+    slots: 9
+    # time in ticks: 6000=day, 12500=sunset, 18000=night.
+    options:
+      day:
+        slot: 3
+        material: GLOWSTONE
+        display_name: "&eDay"
+        time: 6000
+      sunset:
+        slot: 4
+        material: ORANGE_STAINED_GLASS_PANE
+        display_name: "&6Sunset"
+        time: 12500
+      night:
+        slot: 5
+        material: BLACK_STAINED_GLASS_PANE
+        display_name: "&9Night"
+        time: 18000
+
+# ------------------------------------------------------------
+# SPAWN
+# Set the spawn point with /setspawn.
+# ------------------------------------------------------------
+spawn:
+  # Teleport the player to spawn on every join.
+  teleport-on-join: true
+  # Teleport players falling into the void back to spawn (no death).
+  void-teleport: true
+  # Y coordinate below which the teleport triggers.
+  void-y: -64
+  # Set by /setspawn, format "world;x;y;z;yaw;pitch".
+  location: ""
+
+# Completely disable hunger (bar always full).
+disable-hunger: true
+
+# Prevent players from dropping items from their inventory.
+disable-item-drop: true
+
+# ------------------------------------------------------------
+# WORLD
+# ------------------------------------------------------------
+world:
+  # Freeze the day/night cycle (doDaylightCycle gamerule) on all worlds
+  # so the server time never advances on its own.
+  freeze-time: true
+
+# ------------------------------------------------------------
+# RANK-BASED LOGIN MESSAGES (LuckPerms)
+# The vanilla Minecraft join message is always removed.
+# ------------------------------------------------------------
+login-messages:
+  enabled: true
+  # Broadcast message format when a player with a listed rank joins
+  # Supported placeholders: %player% (player name), %luckperms_prefix% (LuckPerms prefix)
+  # Colors: MiniMessage (<red>, <#FF0000>, <gradient:red:blue>text</gradient>)
+  # Legacy & codes: &e, &#RRGGBB still work
+  format: "<gradient:#FFD700:#FF4500>✦ %luckperms_prefix%</gradient><white>%player_name%</white> <white>joined the Server!</white>"
+  # List of LuckPerms groups that trigger the notification.
+  # Example values below — replace with your own group names.
+  ranks:
+    - "owner"
+    - "admin"
+    - "moderator"
+
+# ------------------------------------------------------------
+# FLY
+# ------------------------------------------------------------
+fly:
+  # Disable flight when the player takes damage
+  # (bypass with the novalobby.fly.bypass.damage permission).
+  disable-on-damage: true

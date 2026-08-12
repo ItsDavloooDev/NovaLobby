@@ -1,6 +1,71 @@
-name: VanteyLobby
+name: NovaLobby
 version: '${version}'
-
-main: dev.itsdavlooo.VanteyLobby.VanteyLobby
-api-version: '1.21.5'
+main: dev.itsdavlooo.novalobby.NovaLobby
+api-version: '1.20'
 load: POSTWORLD
+author: ItsDavlooo
+description: Hub/Lobby core plugin with server selector, launchpads, grappling hook and more.
+softdepend:
+  - PlaceholderAPI
+  - LuckPerms
+
+# NOTE: feature commands (/gmc, /gms, /gmsp, /gma, /fly, /setspawn, /playtime)
+# are NOT declared here: they are registered at runtime through the CommandMap.
+commands:
+  novalobby:
+    description: Main NovaLobby command
+    usage: /novalobby reload
+    permission: novalobby.admin
+    aliases: [nova, nl]
+
+permissions:
+  novalobby.admin:
+    description: Access to /novalobby (reload)
+    default: op
+  novalobby.setspawn:
+    description: Set the lobby spawn point with /setspawn
+    default: op
+
+  # Base gamemode permissions.
+  # If you prefer to manage everything through LuckPerms, change these defaults to false:
+  #   default: false
+  novalobby.gamemode.creative:
+    description: Use /gmc
+    default: op
+  novalobby.gamemode.survival:
+    description: Use /gms
+    default: op
+  novalobby.gamemode.spectator:
+    description: Use /gmsp
+    default: op
+  novalobby.gamemode.adventure:
+    description: Use /gma
+    default: op
+  novalobby.gamemode.*:
+    description: Access to all gamemode commands
+    default: op
+    children:
+      novalobby.gamemode.creative: true
+      novalobby.gamemode.survival: true
+      novalobby.gamemode.spectator: true
+      novalobby.gamemode.adventure: true
+  novalobby.gamemode.others:
+    description: Change gamemode of another player (combined in AND with the specific gamemode permission)
+    default: false
+
+  novalobby.playtime:
+    description: Use /playtime (session time in the lobby)
+    default: true
+  novalobby.playtime.others:
+    description: Check session time of another player (/playtime <player>)
+    default: op
+
+  novalobby.fly:
+    description: Use /fly
+    default: op
+  novalobby.fly.others:
+    description: Toggle fly for another player (/fly <player>)
+    default: false
+  novalobby.fly.bypass.damage:
+    description: Keep flight enabled on damage even if fly.disable-on-damage is true
+    default: false
